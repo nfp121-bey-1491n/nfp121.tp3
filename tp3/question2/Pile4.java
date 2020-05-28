@@ -8,13 +8,13 @@ import java.util.Stack;
 public class Pile4 implements PileI, Cloneable {
 	/** la liste des Maillons/Elements */
 	private Maillon stk;
-	/** la capacité de la pile */
+	/** la capacit� de la pile */
 	private int capacite;
 	/** le nombre */
 	private int nombre;
 
 	/**
-	 * Classe interne "statique" contenant chaque élément de la chaine c'est une
+	 * Classe interne "statique" contenant chaque �l�ment de la chaine c'est une
 	 * proposition, vous pouvez l'ignorer !
 	 */
 	private static class Maillon implements Cloneable {
@@ -42,10 +42,10 @@ public class Pile4 implements PileI, Cloneable {
 	}
 
 	/**
-	 * Création d'une pile.
+	 * Cr�ation d'une pile.
 	 * 
 	 * @param taille
-	 *            la taille de la pile, la taille doit être > 0
+	 *            la taille de la pile, la taille doit �tre > 0
 	 */
 	public Pile4(int taille) {
 		if (taille <= 0)
@@ -61,59 +61,75 @@ public class Pile4 implements PileI, Cloneable {
 	public void empiler(Object o) throws PilePleineException {
 		if (estPleine())
 			throw new PilePleineException();
-		// à compléter
+		nombre= nombre+1;
+	        Maillon maillon = new Maillon(o, stk);
+                stk = maillon;
 	}
 
 	public Object depiler() throws PileVideException {
 		if (estVide())
 			throw new PileVideException();
-		// à compléter
-		return null;
+		Object object = stk.element();
+                stk = stk.suivant();
+                nombre= nombre-1;
+                return object;
 	}
 
 	public Object sommet() throws PileVideException {
 		if (estVide())
 			throw new PileVideException();
-		return null; // à compléter
+		return stk.element();
 	}
 
 	/**
-	 * Effectue un test de l'état de la pile.
+	 * Effectue un test de l'�tat de la pile.
 	 * 
 	 * @return vrai si la pile est vide, faux autrement
 	 */
 	public boolean estVide() {
-		return false; // à compléter
+		return stk == null;
 	}
 
 	/**
-	 * Effectue un test de l'état de la pile.
+	 * Effectue un test de l'�tat de la pile.
 	 * 
 	 * @return vrai si la pile est pleine, faux autrement
 	 */
 	public boolean estPleine() {
-		return false; // à compléter
+		return capacite ==nombre; 
 	}
 
 	/**
-	 * Retourne une représentation en String d'une pile, contenant la
-	 * représentation en String de chaque élément.
+	 * Retourne une repr�sentation en String d'une pile, contenant la
+	 * repr�sentation en String de chaque �l�ment.
 	 * 
-	 * @return une représentation en String d'une pile
+	 * @return une repr�sentation en String d'une pile
 	 */
 	public String toString() {
-
-		String s = "[";
-		// à compléter
-		return s + "]";
-	}
+        Maillon maillonInitial = stk;
+        String s = "[";
+        while (stk != null){
+            s += (stk.element()==null)? "null":stk.element().toString();
+            stk = stk.suivant();
+            if(stk!=null) s+=", ";    
+        }
+        stk = maillonInitial;
+        return s + "]";
+    }
 
 	public boolean equals(Object o) {
 		if (o instanceof Pile4) {
-			// à compléter
-			return false;
+		   int capacite = this.capacite();
+                   int taille = this.taille();
+        
+                   PileI pile = (PileI) o;
+                   if(super.equals(o)) return true;
+        
+                   if(capacite != pile.capacite()) return false;
+                   if(taille != pile.taille()) return false;
+        
 		}
-		return false;
+		return true;
 	}
 
 	public int capacite() {

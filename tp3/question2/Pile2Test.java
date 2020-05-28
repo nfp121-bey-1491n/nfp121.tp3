@@ -1,9 +1,10 @@
 package question2;
+import java.util.Stack;
 
 /**
  * Classe-test Pile2Test.
  * 
- * @author (votre nom)
+ * @author Rima Ghoulam
  * @version (un numéro de version ou une date)
  * 
  *          Les classes-test sont documentées ici :
@@ -30,20 +31,32 @@ public class Pile2Test extends junit.framework.TestCase {
 	// Notez cependant que ce dernier ne peut saisir les objets primitifs
 	// du présentoir (les objets sans constructeur, comme int, float, etc.).
 
-	/**
-	 * Constructeur de la classe-test Pile2Test
-	 */
+	private Pile2 pile2;
+	private Stack pileCompare;
+
 	public Pile2Test() {
 	}
 
-	/**
-	 * Met en place les engagements.
-	 * 
-	 * Méthode appelée avant chaque appel de méthode de test.
-	 */
+	
 	protected void setUp() // throws java.lang.Exception
 	{
-		// Initialisez ici vos engagements
+		pile2 = new Pile2(3);
+		try {
+			pile2.empiler("num1");
+			pile2.empiler("num2");
+			pile2.empiler("num3");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		pileCompare = new Stack<String>();
+		try {
+			pileCompare.push("num1");
+			pileCompare.push("num2");
+			pileCompare.push("num3");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -56,6 +69,7 @@ public class Pile2Test extends junit.framework.TestCase {
 		// Libérez ici les ressources engagées par setUp()
 	}
 
+	
 	/**
 	 * Il ne vous reste plus qu'à définir une ou plusieurs méthodes de test. Ces
 	 * méthodes doivent vérifier les résultats attendus à l'aide d'assertions
@@ -64,4 +78,12 @@ public class Pile2Test extends junit.framework.TestCase {
 	 * "Enregistrer une méthode de test".
 	 */
 
+	public void test_estVide() {
+		assertEquals(" stackOfCards est vide  ? ", false, pile2.estVide());
+	}
+
+	public void test_estPleine() {
+		assertEquals(" estPleine  ? ", false, pile2.estPleine());
+	}
+	
 }

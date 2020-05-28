@@ -6,10 +6,10 @@ import question1.PileVideException;
 import java.util.Vector;
 
 /**
- * Décrivez votre classe PileVector ici.
+ * D�crivez votre classe PileVector ici.
  * 
  * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * @version (un num�ro de version ou une date)
  */
 public class Pile3 implements PileI {
 
@@ -20,52 +20,71 @@ public class Pile3 implements PileI {
 	}
 
 	public Pile3(int taille) {
-		// traiter le cas <=0
-		// à compléter
+              if (taille <= 0) taille = CAPACITE_PAR_DEFAUT;
+              v =new Vector<Object>(taille);
 	}
 
 	public void empiler(Object o) throws PilePleineException {
-		// à compléter
+		if(estPleine())throw new PilePleineException();
+		v.add(o);
 	}
 
 	public Object depiler() throws PileVideException {
-		// à compléter
-		return null;
+              if(estVide())throw new PileVideException();	
+	      Object removed= v.lastElement();
+	      v.remove(v.size()-1);
+	      return removed;
 	}
 
 	public Object sommet() throws PileVideException {
-		// à compléter
-		return null;
+		if(estVide())throw new PileVideException();
+		return v.lastElement();
 	}
 
 	public int taille() {
-		// à compléter
-		return -1;
+		
+	    return v.size();
 	}
 
 	public int capacite() {
-		// à compléter
-		return -1;
+		
+	    return v.capacity();
 	}
 
 	public boolean estVide() {
-		// à compléter
-		return false;
+		
+	    return v.size()==0;
 	}
 
 	public boolean estPleine() {
-		// à compléter
-		return false;
+	    
+	    return v.size()==v.capacity();
 	}
 
 	public String toString() {
-		// à compléter
-		return "";
-	}
+        String s = "[";
+        int taille = this.taille();
+        for(int i = taille-1; i >= 0; i--){
+            s += v.get(i);
+            if(i>0) 
+                s+=", ";
+        }
+        s += "]";
+        return s;
+    }
 
 	public boolean equals(Object o) {
-		// à compléter
-		return false;
+	      int capacite = this.capacite();
+              int taille = this.taille();
+        
+              PileI pile = (PileI) o;
+              if(super.equals(o)) return true;
+        
+              if(capacite != pile.capacite()) return false;
+              if(taille != pile.taille()) return false;
+        
+        
+              return true;
 	}
 
 	// fonction fournie

@@ -23,6 +23,7 @@ public class UneUtilisation {
 												// produit
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("(Exception successful)");
 		} // catch
 	} // main()
 } // UneUtilisation

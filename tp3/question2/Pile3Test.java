@@ -3,7 +3,7 @@ package question2;
 /**
  * Classe-test Pile3Test.
  * 
- * @author (votre nom)
+ * @author Rima Ghoulam
  * @version (un numéro de version ou une date)
  * 
  *          Les classes-test sont documentées ici :
@@ -65,4 +65,20 @@ public class Pile3Test extends junit.framework.TestCase {
 	 * "Enregistrer une méthode de test".
 	 */
 
+	
+	public void test_montest()throws Exception {
+        question2.Pile3 p1 = new question2.Pile3();
+        question2.Pile3 p2 = new question2.Pile3();
+        p1.empiler(1);
+        p1.empiler(2);
+        p2.empiler(1);
+        assertEquals(false, p1.equals(p2));
+        p2.empiler(2);
+        assertEquals(true, p1.equals(p2));
+        assertEquals(true, p2.equals(p1));
+        assertEquals(2, p2.depiler());
+        assertEquals(false, p2.equals(p1));
+        assertEquals(true, p2.equals(p2));
+    }
+	
 }

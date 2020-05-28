@@ -3,7 +3,7 @@ package question2;
 /**
  * Classe-test Pile4Test.
  * 
- * @author (votre nom)
+ * @author Rima Ghoulam
  * @version (un numéro de version ou une date)
  * 
  *          Les classes-test sont documentées ici :
@@ -57,4 +57,18 @@ public class Pile4Test extends junit.framework.TestCase {
 		// Libérez ici les ressources engagées par setUp()
 	}
 
+	public void test_montest() throws Exception {
+        question2.Pile4 p1 = new question2.Pile4();
+        question2.Pile4 p2 = new question2.Pile4();
+        p1.empiler(1);
+        p1.empiler(2);
+        p2.empiler(1);
+        assertEquals(2, p1.taille());
+        assertEquals(false, p1.equals(p2));
+        p2.empiler(2);
+        assertEquals(true, p2.equals(p1));
+        assertEquals(2, p1.depiler());
+        assertEquals(true, p1.equals(p1));
+    }
+	
 }
